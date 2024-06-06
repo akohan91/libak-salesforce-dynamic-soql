@@ -74,7 +74,8 @@ public with sharing class DynamicSOQLCondition {
 	 * @return   { String }
 	 */
 	public String stringify(String sobjectApiName) {
-		DescribeFieldResult fieldDescribe = new SobjectFieldPath(sobjectApiName, this.fieldApiName()).targetFieldDescribe();
+		DescribeFieldResult fieldDescribe;
+		// DescribeFieldResult fieldDescribe = new SobjectFieldPath(sobjectApiName, this.fieldApiName()).targetFieldDescribe();
 		this.validateOperator();
 		if (this.function != null) {
 			return DynamicSOQLConstants.TMPL_CONDITION

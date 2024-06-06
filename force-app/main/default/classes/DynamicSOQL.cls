@@ -2,6 +2,7 @@
  * @author Andrei Kakhanouski <akohan91@gmail.com>
  */
 public with sharing class DynamicSOQL {
+	private ISobjectFieldPathConstructable fieldPathConstructor;
 	private String sObjectName;
 	private List<DynamicSOQLFunction> selectFunctions = new List<DynamicSOQLFunction>();
 	private List<String> selectFields = new List<String>();
@@ -11,6 +12,44 @@ public with sharing class DynamicSOQL {
 	private DynamicSOQLOrderBy orderBy;
 	private Integer offsetNumber;
 	private Integer limitNumber;
+
+	/**
+	 * The Factory class is responsible for constructing instances of the DynamicSOQL class.
+	 */
+	public class Factory {
+		ISobjectFieldPathConstructable fieldPathConstructor;
+
+		/**
+		 * Constructor for the Factory class.
+		 *
+		 * @param fieldPathConstructor an instance of ISobjectFieldPathConstructable used to construct field paths.
+		 */
+		public Factory(ISobjectFieldPathConstructable fieldPathConstructor) {
+			this.fieldPathConstructor = fieldPathConstructor;
+		}
+
+		/**
+		 * Builds a DynamicSOQL instance from a JSON string.
+		 *
+		 * @param dynamicSOQLjson the JSON string representing a DynamicSOQL object.
+		 * @return a new instance of DynamicSOQL.
+		 */
+		public DynamicSOQL build(String dynamicSOQLjson) {
+			DynamicSOQL instance = (DynamicSOQL)JSON.deserialize(dynamicSOQLjson, DynamicSOQL.class);
+			return instance.withFieldPathConstructor(this.fieldPathConstructor);
+		}
+
+		/**
+		 * Builds a DynamicSOQL instance for the specified SObject type.
+		 *
+		 * @param sObjectType the SObject type for which the DynamicSOQL is to be built.
+		 * @return a new instance of DynamicSOQL.
+		 */
+		public DynamicSOQL build(SObjectType sObjectType) {
+			return new DynamicSOQL(sObjectType.getDescribe().getName())
+				.withFieldPathConstructor(this.fieldPathConstructor);
+		}
+	}
 
 	// CONSTRUCTORS
 
@@ -23,6 +62,17 @@ public with sharing class DynamicSOQL {
 	}
 
 	/* PUBLIC METHODS */
+
+	/**
+	 * Sets the field path constructor for this DynamicSOQL instance.
+	 *
+	 * @param fieldPathConstructor an instance of ISobjectFieldPathConstructable used to construct field paths.
+	 * @return the current instance of DynamicSOQL with the updated field path constructor.
+	 */
+	public DynamicSOQL withFieldPathConstructor(ISobjectFieldPathConstructable fieldPathConstructor) {
+		this.fieldPathConstructor = fieldPathConstructor;
+		return this;
+	}
 
 	/**
 	 * @description Adds a field to SELECT statement
