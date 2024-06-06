@@ -67,20 +67,20 @@ public with sharing class DynamicSOQLConditionBlock {
 	 * @param sobjectApiName { String } Sobject api name for what the condition block is created.
 	 * @return   { String }
 	 */
-	public String stringify(String sobjectApiName) {
+	public String stringify(String sobjectApiName, ISobjectFieldPathConstructable fieldPathConstructor) {
 		this.operator = String.escapeSingleQuotes(this.operator);
 		this.validateBlock();
 		List<String> result = new List<String>();
 
 		if (this.blocks != null && !this.blocks.isEmpty()) {
 			for (DynamicSOQLConditionBlock block : this.blocks) {
-				result.add(block.stringify(sobjectApiName));
+				result.add(block.stringify(sobjectApiName, fieldPathConstructor));
 			}
 		}
 
 		if (this.conditions != null && !this.conditions.isEmpty()) {
 			for (DynamicSOQLCondition condition : this.conditions) {
-				result.add(condition.stringify(sobjectApiName));
+				result.add(condition.stringify(sobjectApiName, fieldPathConstructor));
 			}
 		}
 		return '(' + String.join(result, ' ' + this.operator + ' ') + ')';

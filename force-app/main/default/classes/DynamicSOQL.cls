@@ -199,10 +199,10 @@ public with sharing class DynamicSOQL {
 				this.sObjectName
 			).replace(
 				DynamicSOQLConstants.PH_WHERE,
-				this.conditionBlock != null ? 'WHERE ' + this.conditionBlock.stringify(this.sObjectName) : DynamicSOQLConstants.EMPTY_STRING
+				this.conditionBlock != null ? 'WHERE ' + this.conditionBlock.stringify(this.sObjectName, this.fieldPathConstructor) : DynamicSOQLConstants.EMPTY_STRING
 			).replace(
 				DynamicSOQLConstants.PH_GROUP_BY,
-				this.groupBy != null ? this.groupBy.stringify(this.sObjectName) : DynamicSOQLConstants.EMPTY_STRING
+				this.groupBy != null ? this.groupBy.stringify(this.sObjectName, this.fieldPathConstructor) : DynamicSOQLConstants.EMPTY_STRING
 			).replace(
 				DynamicSOQLConstants.PH_ORDER_BY,
 				this.orderBy != null ? this.orderBy.stringify() : DynamicSOQLConstants.EMPTY_STRING

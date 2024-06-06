@@ -73,9 +73,8 @@ public with sharing class DynamicSOQLCondition {
 	 * @param  sobjectApiName { String } Sobject api name for what the condition is created.
 	 * @return   { String }
 	 */
-	public String stringify(String sobjectApiName) {
-		DescribeFieldResult fieldDescribe;
-		// DescribeFieldResult fieldDescribe = new SobjectFieldPath(sobjectApiName, this.fieldApiName()).targetFieldDescribe();
+	public String stringify(String sobjectApiName, ISobjectFieldPathConstructable fieldPathConstructor) {
+		DescribeFieldResult fieldDescribe = fieldPathConstructor.construct(sobjectApiName, this.fieldApiName()).targetFieldDescribe();
 		this.validateOperator();
 		if (this.function != null) {
 			return DynamicSOQLConstants.TMPL_CONDITION

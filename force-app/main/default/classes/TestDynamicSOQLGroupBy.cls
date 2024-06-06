@@ -33,7 +33,7 @@ public with sharing class TestDynamicSOQLGroupBy {
 			.addCondition(new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Name'), '>', 10))
 		);
 		System.assertEquals(
-			'GROUP BY Name HAVING (COUNT(Name) > 10)', groupBy.stringify('Account'),
+			'GROUP BY Name HAVING (COUNT(Name) > 10)', groupBy.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor()),
 			'The "stringify" method returns wrong GROUP BY statement.'
 		);
 		Test.stopTest();
@@ -44,7 +44,7 @@ public with sharing class TestDynamicSOQLGroupBy {
 		Test.startTest();
 		DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(new List<String>{'Name'});
 		System.assertEquals(
-			'GROUP BY Name', groupBy.stringify('Account'),
+			'GROUP BY Name', groupBy.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor()),
 			'The "stringify()" method returns wrong GROUP BY statement.'
 		);
 		Test.stopTest();

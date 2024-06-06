@@ -33,14 +33,14 @@ public with sharing class DynamicSOQLGroupBy {
 	 * @param  sobjectApiName { String } Sobject api name for what the group by is created.
 	 * @return   { String }
 	 */
-	public String stringify(String sobjectApiName) {
+	public String stringify(String sobjectApiName, ISobjectFieldPathConstructable fieldPathConstructor) {
 		return DynamicSOQLConstants.TMPL_GROUP_BY
 			.replace(
 				DynamicSOQLConstants.PH_FIELD_GROUP_BY_LIST,
 				String.escapeSingleQuotes(String.join(this.fieldGroupByList, DynamicSOQLConstants.COMMA))
 			).replace(
 				DynamicSOQLConstants.PH_HAVING,
-				this.conditionBlock != null ? ' HAVING ' + this.conditionBlock.stringify(sobjectApiName) : DynamicSOQLConstants.EMPTY_STRING
+				this.conditionBlock != null ? ' HAVING ' + this.conditionBlock.stringify(sobjectApiName, fieldPathConstructor) : DynamicSOQLConstants.EMPTY_STRING
 			)
 		;
 	}
