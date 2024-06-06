@@ -3,7 +3,7 @@ public with sharing class TestDynamiSOQLEnvironment {
 	
 	public static DynamicSOQL.Factory factory = new DynamicSOQL.Factory(new TestFieldPathConstructor());
 
-	private class TestFieldPath implements ISobjectFieldPath {
+	private class TestFieldPath implements DynamicSOQL.ISobjectFieldPath {
 		private Map<String,Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
 		private String sObjectName;
 		private String fieldPath;
@@ -18,8 +18,8 @@ public with sharing class TestDynamiSOQLEnvironment {
 		}
 	}
 
-	public class TestFieldPathConstructor implements ISobjectFieldPathConstructable {
-		public ISobjectFieldPath construct(String sObjectType, String fieldPath) {
+	public class TestFieldPathConstructor implements DynamicSOQL.ISobjectFieldPathConstructable {
+		public DynamicSOQL.ISobjectFieldPath construct(String sObjectType, String fieldPath) {
 			return new TestFieldPath(sObjectType, fieldPath);
 		}
 	}

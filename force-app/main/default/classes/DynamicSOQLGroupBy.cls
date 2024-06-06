@@ -33,7 +33,7 @@ public with sharing class DynamicSOQLGroupBy {
 	 * @param  sobjectApiName { String } Sobject api name for what the group by is created.
 	 * @return   { String }
 	 */
-	public String stringify(String sobjectApiName, ISobjectFieldPathConstructable fieldPathConstructor) {
+	public String stringify(String sobjectApiName, DynamicSOQL.ISobjectFieldPathConstructable fieldPathConstructor) {
 		return DynamicSOQLConstants.TMPL_GROUP_BY
 			.replace(
 				DynamicSOQLConstants.PH_FIELD_GROUP_BY_LIST,

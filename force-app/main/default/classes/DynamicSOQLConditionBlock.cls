@@ -67,7 +67,7 @@ public with sharing class DynamicSOQLConditionBlock {
 	 * @param sobjectApiName { String } Sobject api name for what the condition block is created.
 	 * @return   { String }
 	 */
-	public String stringify(String sobjectApiName, ISobjectFieldPathConstructable fieldPathConstructor) {
+	public String stringify(String sobjectApiName, DynamicSOQL.ISobjectFieldPathConstructable fieldPathConstructor) {
 		this.operator = String.escapeSingleQuotes(this.operator);
 		this.validateBlock();
 		List<String> result = new List<String>();
