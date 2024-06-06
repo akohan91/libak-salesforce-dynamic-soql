@@ -70,7 +70,9 @@ public with sharing class DynamicSOQL {
 	 * @return the current instance of DynamicSOQL with the updated field path constructor.
 	 */
 	public DynamicSOQL withFieldPathConstructor(ISobjectFieldPathConstructable fieldPathConstructor) {
-		this.fieldPathConstructor = fieldPathConstructor;
+		if (this.fieldPathConstructor == null) {
+			this.fieldPathConstructor = fieldPathConstructor;
+		}
 		return this;
 	}
 
@@ -101,7 +103,7 @@ public with sharing class DynamicSOQL {
 	 * @return                  { DynamicSOQL }
 	 */
 	public DynamicSOQL withSubQuery(String relationshipName, DynamicSOQL subQuery) {
-		this.subQueries.put(relationshipName, subQuery);
+		this.subQueries.put(relationshipName, subQuery.withFieldPathConstructor(this.fieldPathConstructor));
 		return this;
 	}
 
