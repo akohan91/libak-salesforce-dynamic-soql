@@ -88,7 +88,7 @@ private class TestDynamicSOQL {
 			new DynamicSOQLConditionBlock('AND')
 			.addCondition( new DynamicSOQLCondition('Name', '=', 'Test'))
 		);
-
+		
 		Test.startTest();
 
 		String result = soql.stringify();
@@ -183,7 +183,8 @@ private class TestDynamicSOQL {
 		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
 		.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name'}));
-
+		System.debug(JSON.serializePretty(soql));
+		
 		Test.startTest();
 
 		String result = soql.stringify();
