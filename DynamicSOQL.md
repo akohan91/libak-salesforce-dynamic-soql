@@ -26,7 +26,6 @@
     - [Methods](#methods-5)
 
 # Intro
-<a name="Intro">
 
 **Important**
 
@@ -56,10 +55,8 @@ The library is built in Object Oriented style and contains the next classes:
 - **DynamicSOQLOrderBy** - represent `ORDER BY` clause.
 
 # Quick Start
-<a name="Quick_Start">
 
 ## Build a regular query
-<a name="Build_a_regular_query">
 
 ```java
 DynamicSOQL soql = new DynamicSOQL('Account')
@@ -95,7 +92,6 @@ System.debug(soql.stringify());
 ```
 
 ## Build an aggregated query
-<a name="Build_an_aggregated_query">
 
 ```java
 DynamicSOQL soql = new DynamicSOQL('Opportunity')
@@ -126,7 +122,6 @@ System.debug(soql.stringify());
 */
 ```
 
-<a name="Reference_Guide">
 
 # Reference Guide
 
@@ -136,10 +131,8 @@ System.debug(soql.stringify());
 
 
 ## DynamicSOQL
-<a name="DynamicSOQL">
 
 ### Constructors
-<a name="DynamicSOQL_Constructors">
 
 The following are constructors for DynamicSOQL.
 - `DynamicSOQL(String sObjectName)`
@@ -148,7 +141,6 @@ DynamicSOQL soql = new DynamicSOQL('Account');
 ```
 
 ### Methods
-<a name="DynamicSOQL_Methods">
 
 The following are methods for DynamicSOQL. All are instance methods.
 
@@ -318,10 +310,8 @@ new DynamicSOQL('Account')
 
 
 ## DynamicSOQLFunction
-<a name="DynamicSOQLFunction">
 
 ### Constructors
-<a name="DynamicSOQLFunction_Constructors">
 
 The following are constructors for DynamicSOQLFunction.
 - `DynamicSOQLFunction(String functionName)`
@@ -341,7 +331,6 @@ System.debug(function.stringify()); // COUNT(Id) recordsCount
 ```
 
 ### Methods
-<a name="DynamicSOQLFunction_Methods">
 
 The following are methods for DynamicSOQLFunction. All are instance methods.
 
@@ -369,10 +358,8 @@ new DynamicSOQLFunction('COUNT', 'Id', 'alias')
 
 
 ## DynamicSOQLConditionBlock
-<a name="DynamicSOQLConditionBlock">
 
 ### Constructors
-<a name="DynamicSOQLConditionBlock_Constructors">
 
 The following are constructors for DynamicSOQLConditionBlock.
 
@@ -383,7 +370,6 @@ DynamicSOQLConditionBlock conditionBlock = new DynamicSOQLConditionBlock('AND')
 ```
 
 ### Methods
-<a name="DynamicSOQLConditionBlock_Methods">
 
 The following are methods for DynamicSOQLConditionBlock. All are instance methods.
 
@@ -458,10 +444,8 @@ Builds a Dynamic SOQL Condition Block string for WHERE statement
 
 
 ## DynamicSOQLCondition
-<a name="DynamicSOQLCondition">
 
 ### Constructors
-<a name="DynamicSOQLCondition_Constructors">
 
 The following are constructors for DynamicSOQLCondition.
 
@@ -505,7 +489,6 @@ DynamicSOQLCondition variableCondition = new DynamicSOQLCondition('Id', 'IN:', '
 
 
 ### Methods
-<a name="DynamicSOQLCondition_Methods">
 
 The following are methods for DynamicSOQLCondition. All are instance methods.
 
@@ -523,10 +506,8 @@ Builds a SOQL condition string like `Name = 'Andrew'`
 
 
 ## DynamicSOQLOrderBy
-<a name="DynamicSOQLOrderBy">
 
 ### Constructors
-<a name="DynamicSOQLOrderBy_Constructors">
 
 The following are constructors for DynamicSOQLOrderBy.
 
@@ -546,7 +527,6 @@ DynamicSOQLOrderBy orderBy = new DynamicSOQLOrderBy(new List<String>{'Name', 'Id
 ```
 
 ### Methods
-<a name="DynamicSOQLOrderBy_Methods">
 
 The following are methods for DynamicSOQLOrderBy. All are instance methods.
 
@@ -564,10 +544,8 @@ Returns ORDER BY statement like: "ORDER BY Name ASC NULLS LAST"
 
 
 ## DynamicSOQLGroupBy
-<a name="DynamicSOQLGroupBy">
 
 ### Constructors
-<a name="DynamicSOQLGroupBy_Constructors">
 
 The following are constructors for DynamicSOQLGroupBy.
 
@@ -577,7 +555,6 @@ DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(new List<String>{'StageName'
 ```
 
 ### Methods
-<a name="DynamicSOQLGroupBy_Methods">
 
 The following are methods for DynamicSOQLGroupBy. All are instance methods.
 

@@ -23,7 +23,6 @@
     - [Methods](#methods-2)
 
 # Intro
-<a name="Intro">
 
 DynamicSOQL JavaScript API is almost full mirror of Apex version and allows you to build the JSON representation of your query and then send it to the backend to process. This means you can build your query on the frontend and then process it on the backend, providing a seamless and efficient data retrieval solution.
 
@@ -40,10 +39,8 @@ The library is built in Object Oriented style and contains the next classes:
 - **DynamicSOQLOrderBy** - represent `ORDER BY` clause.
 
 # Quick Start
-<a name="Quick_Start">
 
 ## Build a regular query
-<a name="Build_a_regular_query">
 
 ```javascript
 const soql = new DynamicSOQL('Account')
@@ -67,7 +64,6 @@ const soql = new DynamicSOQL('Account')
 ```
 
 ## Build an aggregated query
-<a name="Build_an_aggregated_query">
 
 ```javascript
 const soql = new DynamicSOQL('Opportunity')
@@ -86,15 +82,12 @@ const soql = new DynamicSOQL('Opportunity')
     );
 ```
 
-<a name="Reference_Guide">
 
 # Reference Guide
 
 ## DynamicSOQL
-<a name="DynamicSOQL">
 
 ### Constructor
-<a name="DynamicSOQL_Constructor">
 
 - `DynamicSOQL(sObjectName)`
 
@@ -106,7 +99,6 @@ const soql = new DynamicSOQL('Account');
 ```
 
 ### Methods
-<a name="DynamicSOQL_Methods">
 
 The following are methods for DynamicSOQL. All are instance methods.
 
@@ -219,10 +211,8 @@ new DynamicSOQL('Account')
 ```
 
 ## DynamicSOQLFunction
-<a name="DynamicSOQLFunction">
 
 ### Constructor
-<a name="DynamicSOQLFunction_Constructors">
 
 - `DynamicSOQLFunction(functionName, fieldName, alias)`
     **Params:**
@@ -235,10 +225,8 @@ const soqlFunction = new DynamicSOQLFunction('COUNT', 'Id', 'recordsCount');
 ```
 
 ## DynamicSOQLConditionBlock
-<a name="DynamicSOQLConditionBlock">
 
 ### Constructor
-<a name="DynamicSOQLConditionBlock_Constructor">
 
 
 - `DynamicSOQLConditionBlock(operator)`
@@ -250,7 +238,6 @@ const conditionBlock = new DynamicSOQLConditionBlock('AND')
 ```
 
 ### Methods
-<a name="DynamicSOQLConditionBlock_Methods">
 
 The following are methods for DynamicSOQL. All are instance methods.
 
@@ -290,10 +277,8 @@ conditionBlock.switchOperator('OR');
 ```
 
 ## DynamicSOQLCondition
-<a name="DynamicSOQLCondition">
 
 ### Constructors
-<a name="DynamicSOQLCondition_Constructors">
 
 - `DynamicSOQLCondition(fieldName, operator, value)`
     **Params:**
@@ -319,10 +304,8 @@ const soqlAsCondition   = new DynamicSOQLCondition('AccountId', 'IN',
 ```
 
 ## DynamicSOQLOrderBy
-<a name="DynamicSOQLOrderBy">
 
 ### Constructors
-<a name="DynamicSOQLOrderBy_Constructors">
 
 - `DynamicSOQLOrderBy(List<String> orderByFields, Boolean isDESC, Boolean isNullsFirst)`
     **Params:**
@@ -335,10 +318,8 @@ const orderBy = new DynamicSOQLOrderBy(['Name', 'Id'], true, true);
 ```
 
 ## DynamicSOQLGroupBy
-<a name="DynamicSOQLGroupBy">
 
 ### Constructors
-<a name="DynamicSOQLGroupBy_Constructors">
 
 The following are constructors for DynamicSOQL.
 
@@ -350,7 +331,6 @@ const groupBy = new DynamicSOQLGroupBy(['StageName']);
 ```
 
 ### Methods
-<a name="DynamicSOQLGroupBy_Methods">
 
 The following are methods for DynamicSOQL. All are instance methods.
 
