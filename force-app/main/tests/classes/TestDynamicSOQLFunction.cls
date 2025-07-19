@@ -32,11 +32,11 @@ public with sharing class TestDynamicSOQLFunction {
 	}
 
 	@IsTest
-	static void testfieldApiName(){
+	static void testFieldApiName(){
 		Test.startTest();
 		System.assertEquals(
-			'Id', new DynamicSOQLFunction('COUNT', 'Id', 'alias').fieldApiname(),
-			'The "fieldApiname()" method returns wrong value.'
+			'Id', new DynamicSOQLFunction('COUNT', 'Id', 'alias').fieldApiName(),
+			'The "fieldApiName()" method returns wrong value.'
 		);
 		Test.stopTest();
 	}

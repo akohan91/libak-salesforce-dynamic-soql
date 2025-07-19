@@ -148,7 +148,7 @@ public with sharing class DynamicSOQL {
 
 	/**
 	 * @description Adds a GROUP BY statement to the query
-	 * @param  groupBy { DynamicSOQLGoupBy }
+	 * @param  groupBy { DynamicSOQLGroupBy }
 	 * @return         { DynamicSOQL }
 	 */
 	public DynamicSOQL withGroupBy(DynamicSOQLGroupBy groupBy) {
@@ -217,7 +217,7 @@ public with sharing class DynamicSOQL {
 		List<String> selectItems = new List<String>();
 		selectItems.addAll(buildSelectFields());
 		selectItems.addAll(buildFunctions());
-		selectItems.addAll(buidSubqueries(sObjectDescription));
+		selectItems.addAll(buildSubqueries(sObjectDescription));
 
 		return DynamicSOQLConstants.TMPL_QUERY
 			.replace(
@@ -270,7 +270,7 @@ public with sharing class DynamicSOQL {
 		return result;
 	}
 
-	private List<String> buidSubqueries(DescribeSObjectResult sObjectDescription) {
+	private List<String> buildSubqueries(DescribeSObjectResult sObjectDescription) {
 		if (this.subQueries == null || this.subQueries.isEmpty()) {
 			return new List<String>();
 		}

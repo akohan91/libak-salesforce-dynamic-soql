@@ -10,7 +10,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 
 		Test.startTest();
 
-		String result = conditionBlock.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = conditionBlock.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -26,7 +26,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 
 		Test.startTest();
 
-		String result = conditionBlock.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = conditionBlock.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -52,7 +52,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 
 		Test.startTest();
 
-		String result = conditionBlock.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = conditionBlock.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -72,7 +72,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 
 		System.assertEquals(
 			'(FirstName = \'Test Name\' AND LastName = \'Test Name\' AND Birthdate < 2022-01-01)',
-			conditionBlock.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor()),
+			conditionBlock.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
 			'The stringify() method returns wrong value'
 		);
 
@@ -84,7 +84,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 
 		System.assertEquals(
 			'(FirstName = \'Test Name\' OR LastName = \'Test Name\' OR Birthdate < 2022-01-01)',
-			conditionBlock.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor()),
+			conditionBlock.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
 			'The stringify() method returns wrong value'
 		);
 	}
@@ -119,7 +119,7 @@ public with sharing class TestDynamicSOQLConditionBlock {
 			new DynamicSOQLConditionBlock('AND')
 			.addCondition(new DynamicSOQLCondition('Name', '=', 'Test'))
 			.switchOperator('wrong')
-			.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+			.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 		} catch (Exception exc) {
 			errorCount++;
 		}

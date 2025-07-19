@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class TestDynamiSOQLEnvironment {
+public with sharing class TestDynamicSOQLEnvironment {
 	
 	public static DynamicSOQL.Factory factory = new DynamicSOQL.Factory(new TestFieldPathConstructor());
 

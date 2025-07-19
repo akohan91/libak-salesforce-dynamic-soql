@@ -9,7 +9,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -22,7 +22,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -36,7 +36,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -54,7 +54,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -71,7 +71,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -84,7 +84,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -101,7 +101,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -118,7 +118,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -132,7 +132,7 @@ public with sharing class TestDynamicSOQLCondition {
 	@IsTest
 	static void testConstructorDynamicSOQLAsCondition(){
 		DynamicSOQLCondition condition = new DynamicSOQLCondition('AccountId', 'IN',
-			TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+			TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 			.withField('Id')
 			.withConditions(
 				new DynamicSOQLConditionBlock('AND')
@@ -142,7 +142,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Contact', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -159,7 +159,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -172,7 +172,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -183,29 +183,29 @@ public with sharing class TestDynamicSOQLCondition {
 	}
 
 	@IsTest
-	static void testfieldApiName(){
+	static void testFieldApiName(){
 		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', '=', 'Test');
 
 		Test.startTest();
 
-		String result = condition.fieldApiname();
+		String result = condition.fieldApiName();
 
 		Test.stopTest();
 
-		System.assertEquals('Name', condition.fieldApiname(), 'The "fieldApiname()" method returns wrong value.');
+		System.assertEquals('Name', result, 'The "fieldApiName()" method returns wrong value.');
 	}
 
 	@IsTest
-	static void testfieldApiNameWithFunction(){
+	static void testFieldApiNameWithFunction(){
 		DynamicSOQLCondition condition = new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Id'), '>', 10);
 
 		Test.startTest();
 
-		String result = condition.fieldApiname();
+		String result = condition.fieldApiName();
 
 		Test.stopTest();
 
-		System.assertEquals('Id', result, 'The "fieldApiname()" method returns wrong value.');
+		System.assertEquals('Id', result, 'The "fieldApiName()" method returns wrong value.');
 	}
 
 	@IsTest
@@ -216,7 +216,7 @@ public with sharing class TestDynamicSOQLCondition {
 		Test.startTest();
 
 		try {
-			condition.fieldApiname();
+			condition.fieldApiName();
 		} catch (Exception exc) {
 			errorCount++;
 		}
@@ -234,7 +234,7 @@ public with sharing class TestDynamicSOQLCondition {
 		Test.startTest();
 
 		try {
-			condition.stringify('Account', new TestDynamiSOQLEnvironment.TestFieldPathConstructor());
+			condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 		} catch (Exception exc) {
 			errorCount++;
 		}

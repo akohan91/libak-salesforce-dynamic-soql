@@ -54,7 +54,7 @@ public with sharing class DynamicSOQLConditionBlock {
 	public Set<String> fieldsApiNames() {
 		Set<String> result = new Set<String>();
 		for (DynamicSOQLCondition soqlCondition : this.conditions) {
-			result.add(soqlCondition.fieldApiname());
+			result.add(soqlCondition.fieldApiName());
 		}
 		for (DynamicSOQLConditionBlock conditionBlock : this.blocks) {
 			result.addAll(conditionBlock.fieldsApiNames());

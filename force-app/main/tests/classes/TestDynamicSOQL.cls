@@ -6,7 +6,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithField(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withField('Name')
 		.withField('OwnerId');
@@ -26,10 +26,10 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithSubQuery(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name').withSubQuery(
 			'Contacts',
-			TestDynamiSOQLEnvironment.factory.build(Contact.SObjectType)
+			TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 			.withField('Id')
 		);
 
@@ -48,7 +48,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithSubQueryNoChildSObject(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
 		.withSubQuery(
 			'Products',
@@ -82,7 +82,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithConditions(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withConditions(
 			new DynamicSOQLConditionBlock('AND')
@@ -104,12 +104,12 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testInfoToFLSCheck(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withField('Name')
 		.withSubQuery(
 			'Contacts',
-			TestDynamiSOQLEnvironment.factory.build(Contact.SObjectType)
+			TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 			.withField('Id')
 			.withField('FirstName')
 		)
@@ -135,19 +135,19 @@ private class TestDynamicSOQL {
 		);
 		System.assert(
 			result.get('Account').containsAll(new Set<String>{'Id','Name','Phone','Industry'}),
-			'The infoToFLSCheck.Account containa wrong set of fields. Actual: ' +
+			'The infoToFLSCheck.Account contains wrong set of fields. Actual: ' +
 				result.get('Account') + ' Expected: ' + new Set<String>{'Id','Name','Phone','Industry'}
 		);
 		System.assert(
 			result.get('Contact').containsAll(new Set<String>{'Id','FirstName'}),
-			'The infoToFLSCheck.Contact containa wrong set of fields. Actual: ' +
+			'The infoToFLSCheck.Contact contains wrong set of fields. Actual: ' +
 				result.get('Contact') + ' Expected: ' + new Set<String>{'Id','FirstName'}
 		);
 	}
 
 	@IsTest
 	static void testInfoToFLSCheckWithGroupBy(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withFunction(new DynamicSOQLFunction('COUNT', 'Id'))
 		.withField('Name')
 		.withConditions(
@@ -173,17 +173,16 @@ private class TestDynamicSOQL {
 		);
 		System.assert(
 			result.get('Account').containsAll(new Set<String>{'Id','Name','Phone'}),
-			'The infoToFLSCheck.Account containa wrong set of fields. Actual: ' +
+			'The infoToFLSCheck.Account contains wrong set of fields. Actual: ' +
 				result.get('Account') + ' Expected: ' + new Set<String>{'Id','Name','Phone'}
 		);
 	}
 
 	@IsTest
 	static void testWithOrderBy(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
 		.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name'}));
-		System.debug(JSON.serializePretty(soql));
 		
 		Test.startTest();
 
@@ -200,7 +199,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithGroupBy(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
 		.withFunction(new DynamicSOQLFunction('COUNT', 'Id'))
 		.withGroupBy(
@@ -227,7 +226,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testOffsetLimit(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withOffset(0)
 		.withLimit(10);
@@ -272,7 +271,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testFullQueryStaff(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Account.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 			.withField('Id')
 			.withField('Name')
 			.withConditions(
@@ -282,7 +281,7 @@ private class TestDynamicSOQL {
 			.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}))
 			.withSubQuery(
 				'Contacts',
-				TestDynamiSOQLEnvironment.factory.build(Contact.SObjectType)
+				TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 				.withField('FirstName')
 				.withField('Email')
 				.withConditions(
@@ -306,7 +305,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testFullAggregateStaff(){
-		DynamicSOQL soql = TestDynamiSOQLEnvironment.factory.build(Opportunity.SObjectType)
+		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Opportunity.SObjectType)
 			.withField('StageName')
 			.withFunction(new DynamicSOQLFunction('SUM', 'Amount', 'amount'))
 			.withFunction(new DynamicSOQLFunction('COUNT', 'Id', 'oppCount'))
