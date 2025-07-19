@@ -2,14 +2,14 @@
  * @author Andrei Kakhanouski <akohan91@gmail.com>
  */
 @IsTest
-public with sharing class TestDynamicSOQLCondition {
+public with sharing class libak_TestDynamicSOQLCondition {
 	@IsTest
 	static void testConstructorValueAsObject(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('IsDeleted', '=', false);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('IsDeleted', '=', false);
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -18,11 +18,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorWithFunction(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Id'), '>', 10);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition(new libak_DynamicSOQLFunction('COUNT', 'Id'), '>', 10);
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -32,16 +32,16 @@ public with sharing class TestDynamicSOQLCondition {
 	@IsTest
 	static void testConstructorValueAsDateTime(){
 		Datetime value = Datetime.newInstance(2022, 01, 01, 01, 01, 01);
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('CreatedDate', '=', value);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('CreatedDate', '=', value);
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
 		System.assertEquals(
-			'CreatedDate = ' + value.formatGmt(DynamicSOQLConstants.FORMAT_DATE_TIME),
+			'CreatedDate = ' + value.formatGmt(libak_DynamicSOQLConstants.FORMAT_DATE_TIME),
 			result,
 			'The "stringify" method returns wrong value.'
 		);
@@ -50,16 +50,16 @@ public with sharing class TestDynamicSOQLCondition {
 	@IsTest
 	static void testConstructorValueAsDate(){
 		Date value = Date.newInstance(2022, 01, 01);
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Birthdate', '=', value);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Birthdate', '=', value);
 
 		Test.startTest();
 
-		String result = condition.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Contact', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
 		System.assertEquals(
-			'Birthdate = ' + ((Datetime)value).formatGmt(DynamicSOQLConstants.FORMAT_DATE),
+			'Birthdate = ' + ((Datetime)value).formatGmt(libak_DynamicSOQLConstants.FORMAT_DATE),
 			result,
 			'The "stringify" method returns wrong value.'
 		);
@@ -67,11 +67,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValueAsString(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', '=', 'It\'s a string');
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', '=', 'It\'s a string');
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -80,11 +80,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValuesList(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', 'IN', new List<String>{'It\'s a string', 'It\'s another string'});
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', 'IN', new List<String>{'It\'s a string', 'It\'s another string'});
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -97,11 +97,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValuesListINCLUDES(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', 'INCLUDES', new List<String>{'value1', 'value2', 'value3'});
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', 'INCLUDES', new List<String>{'value1', 'value2', 'value3'});
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -114,11 +114,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValuesListEXCLUDES(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', 'EXCLUDES', new List<String>{'value1', 'value2', 'value3'});
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', 'EXCLUDES', new List<String>{'value1', 'value2', 'value3'});
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -131,18 +131,18 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorDynamicSOQLAsCondition(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('AccountId', 'IN',
-			TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('AccountId', 'IN',
+			libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 			.withField('Id')
 			.withConditions(
-				new DynamicSOQLConditionBlock('AND')
-				.addCondition(new DynamicSOQLCondition('Industry', '=', 'Government'))
+				new libak_DynamicSOQLConditionBlock('AND')
+				.addCondition(new libak_DynamicSOQLCondition('Industry', '=', 'Government'))
 			)
 		);
 
 		Test.startTest();
 
-		String result = condition.stringify('Contact', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Contact', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -155,11 +155,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValueAsStringVariable(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', '=:', 'variableName');
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', '=:', 'variableName');
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -168,11 +168,11 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testConstructorValueAsNull(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', '=', (String)null);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', '=', (String)null);
 
 		Test.startTest();
 
-		String result = condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+		String result = condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 
 		Test.stopTest();
 
@@ -184,7 +184,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testFieldApiName(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', '=', 'Test');
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', '=', 'Test');
 
 		Test.startTest();
 
@@ -197,7 +197,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testFieldApiNameWithFunction(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Id'), '>', 10);
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition(new libak_DynamicSOQLFunction('COUNT', 'Id'), '>', 10);
 
 		Test.startTest();
 
@@ -210,7 +210,7 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testNoFieldApiNameInSOQLConditionError(){
-		DynamicSOQLCondition condition = (DynamicSOQLCondition)JSON.deserialize('{"function": null, "fieldName": null, "operator": "=", "value": "test" }', DynamicSOQLCondition.class);
+		libak_DynamicSOQLCondition condition = (libak_DynamicSOQLCondition)JSON.deserialize('{"function": null, "fieldName": null, "operator": "=", "value": "test" }', libak_DynamicSOQLCondition.class);
 		Integer errorCount = 0;
 
 		Test.startTest();
@@ -228,13 +228,13 @@ public with sharing class TestDynamicSOQLCondition {
 
 	@IsTest
 	static void testToStringWrongOperator(){
-		DynamicSOQLCondition condition = new DynamicSOQLCondition('Name', 'wrongOperator', 'It\'s a string');
+		libak_DynamicSOQLCondition condition = new libak_DynamicSOQLCondition('Name', 'wrongOperator', 'It\'s a string');
 		Integer errorCount = 0;
 
 		Test.startTest();
 
 		try {
-			condition.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor());
+			condition.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor());
 		} catch (Exception exc) {
 			errorCount++;
 		}

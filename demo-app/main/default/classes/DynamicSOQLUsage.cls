@@ -12,18 +12,18 @@ public with sharing class DynamicSOQLUsage {
 			.withField('OwnerId')
 			.withField('Owner.Name')
 			.withConditions(
-				new DynamicSOQLConditionBlock('AND')
-				.addCondition(new DynamicSOQLCondition('Name', 'LIKE', '%Oil%'))
+				new libak_DynamicSOQLConditionBlock('AND')
+				.addCondition(new libak_DynamicSOQLCondition('Name', 'LIKE', '%Oil%'))
 			)
-			.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}))
+			.withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}))
 			.withSubQuery(
 				'Contacts',
-				new DynamicSOQL('Contact')
+				Soql.factory.build(Contact.SObjectType)
 				.withField('FirstName')
 				.withField('Email')
 				.withConditions(
-					new DynamicSOQLConditionBlock('AND')
-					.addCondition(new DynamicSOQLCondition('Email', '!=', (String)null))
+					new libak_DynamicSOQLConditionBlock('AND')
+					.addCondition(new libak_DynamicSOQLCondition('Email', '!=', (String)null))
 				)
 			).stringify();
 		return soqlString;
@@ -32,15 +32,15 @@ public with sharing class DynamicSOQLUsage {
 	public static String buildAggregateSoqlString() {
 		String soqlString = Soql.factory.build(Opportunity.SObjectType)
 			.withField('StageName')
-			.withFunction(new DynamicSOQLFunction('SUM', 'Amount', 'amount'))
-			.withFunction(new DynamicSOQLFunction('COUNT', 'Id', 'oppCount'))
-			.withFunction(new DynamicSOQLFunction('AVG', 'Amount', 'avgAmount'))
+			.withFunction(new libak_DynamicSOQLFunction('SUM', 'Amount', 'amount'))
+			.withFunction(new libak_DynamicSOQLFunction('COUNT', 'Id', 'oppCount'))
+			.withFunction(new libak_DynamicSOQLFunction('AVG', 'Amount', 'avgAmount'))
 			.withGroupBy(
-				new DynamicSOQLGroupBy(new List<String>{'StageName'})
+				new libak_DynamicSOQLGroupBy(new List<String>{'StageName'})
 				.withHaving(
-					new DynamicSOQLConditionBlock('AND')
-					.addCondition(new DynamicSOQLCondition(
-						new DynamicSOQLFunction('SUM','Amount'), '>', 190)
+					new libak_DynamicSOQLConditionBlock('AND')
+					.addCondition(new libak_DynamicSOQLCondition(
+						new libak_DynamicSOQLFunction('SUM','Amount'), '>', 190)
 					)
 				)
 			).stringify();

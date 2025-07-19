@@ -1,5 +1,5 @@
 public with sharing class Soql {
-	public static DynamicSOQL.Factory factory = new DynamicSOQL.Factory(
+	public static libak_DynamicSOQL.Factory factory = new libak_DynamicSOQL.Factory(
 		new FieldPathConstructor()
 	);
 }

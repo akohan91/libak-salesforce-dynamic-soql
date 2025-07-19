@@ -2,11 +2,11 @@
  * @author Andrei Kakhanouski <akohan91@gmail.com>
  */
 @IsTest
-private class TestDynamicSOQL {
+private class libak_TestDynamicSOQL {
 
 	@IsTest
 	static void testWithField(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withField('Name')
 		.withField('OwnerId');
@@ -26,10 +26,10 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithSubQuery(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name').withSubQuery(
 			'Contacts',
-			TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
+			libak_TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 			.withField('Id')
 		);
 
@@ -48,11 +48,11 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithSubQueryNoChildSObject(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
 		.withSubQuery(
 			'Products',
-			new DynamicSOQL('Product2')
+			new libak_DynamicSOQL('Product2')
 			.withField('Id')
 		);
 		Integer excCount = 0;
@@ -82,11 +82,11 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithConditions(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withConditions(
-			new DynamicSOQLConditionBlock('AND')
-			.addCondition( new DynamicSOQLCondition('Name', '=', 'Test'))
+			new libak_DynamicSOQLConditionBlock('AND')
+			.addCondition( new libak_DynamicSOQLCondition('Name', '=', 'Test'))
 		);
 		
 		Test.startTest();
@@ -104,20 +104,20 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testInfoToFLSCheck(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withField('Name')
 		.withSubQuery(
 			'Contacts',
-			TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
+			libak_TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 			.withField('Id')
 			.withField('FirstName')
 		)
 		.withConditions(
-			new DynamicSOQLConditionBlock('AND')
-			.addCondition(new DynamicSOQLCondition('Phone', '=', '12345'))
+			new libak_DynamicSOQLConditionBlock('AND')
+			.addCondition(new libak_DynamicSOQLCondition('Phone', '=', '12345'))
 		)
-		.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Industry'}));
+		.withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Industry'}));
 
 		Test.startTest();
 
@@ -147,17 +147,17 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testInfoToFLSCheckWithGroupBy(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
-		.withFunction(new DynamicSOQLFunction('COUNT', 'Id'))
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		.withFunction(new libak_DynamicSOQLFunction('COUNT', 'Id'))
 		.withField('Name')
 		.withConditions(
-			new DynamicSOQLConditionBlock('AND')
-			.addCondition(new DynamicSOQLCondition('Phone', '=', '12345'))
+			new libak_DynamicSOQLConditionBlock('AND')
+			.addCondition(new libak_DynamicSOQLCondition('Phone', '=', '12345'))
 		)
 		.withGroupBy(
-			new DynamicSOQLGroupBy(new List<String>{'Name'})
-			.withHaving(new DynamicSOQLConditionBlock('AND').addCondition(
-				new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Id'), '>', 10)
+			new libak_DynamicSOQLGroupBy(new List<String>{'Name'})
+			.withHaving(new libak_DynamicSOQLConditionBlock('AND').addCondition(
+				new libak_DynamicSOQLCondition(new libak_DynamicSOQLFunction('COUNT', 'Id'), '>', 10)
 			))
 		);
 
@@ -180,9 +180,9 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithOrderBy(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
-		.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name'}));
+		.withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Name'}));
 		
 		Test.startTest();
 
@@ -199,14 +199,14 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testWithGroupBy(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Name')
-		.withFunction(new DynamicSOQLFunction('COUNT', 'Id'))
+		.withFunction(new libak_DynamicSOQLFunction('COUNT', 'Id'))
 		.withGroupBy(
-			new DynamicSOQLGroupBy(new List<String>{'Name'})
+			new libak_DynamicSOQLGroupBy(new List<String>{'Name'})
 			.withHaving(
-				new DynamicSOQLConditionBlock('AND')
-				.addCondition(new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Id'), '=', 1))
+				new libak_DynamicSOQLConditionBlock('AND')
+				.addCondition(new libak_DynamicSOQLCondition(new libak_DynamicSOQLFunction('COUNT', 'Id'), '=', 1))
 			)
 		);
 
@@ -226,7 +226,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testOffsetLimit(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 		.withField('Id')
 		.withOffset(0)
 		.withLimit(10);
@@ -246,7 +246,7 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testStringifyNoSObject(){
-		DynamicSOQL soql = new DynamicSOQL('FakeSobject');
+		libak_DynamicSOQL soql = new libak_DynamicSOQL('FakeSobject');
 		Integer excCount = 0;
 
 		Test.startTest();
@@ -271,22 +271,22 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testFullQueryStaff(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Account.SObjectType)
 			.withField('Id')
 			.withField('Name')
 			.withConditions(
-				new DynamicSOQLConditionBlock('AND')
-				.addCondition(new DynamicSOQLCondition('Name', '=', 'Some Account Name'))
+				new libak_DynamicSOQLConditionBlock('AND')
+				.addCondition(new libak_DynamicSOQLCondition('Name', '=', 'Some Account Name'))
 			)
-			.withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}))
+			.withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}))
 			.withSubQuery(
 				'Contacts',
-				TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
+				libak_TestDynamicSOQLEnvironment.factory.build(Contact.SObjectType)
 				.withField('FirstName')
 				.withField('Email')
 				.withConditions(
-					new DynamicSOQLConditionBlock('AND')
-					.addCondition(new DynamicSOQLCondition('Email', '!=', (String)null))
+					new libak_DynamicSOQLConditionBlock('AND')
+					.addCondition(new libak_DynamicSOQLCondition('Email', '!=', (String)null))
 				)
 			);
 
@@ -305,17 +305,17 @@ private class TestDynamicSOQL {
 
 	@IsTest
 	static void testFullAggregateStaff(){
-		DynamicSOQL soql = TestDynamicSOQLEnvironment.factory.build(Opportunity.SObjectType)
+		libak_DynamicSOQL soql = libak_TestDynamicSOQLEnvironment.factory.build(Opportunity.SObjectType)
 			.withField('StageName')
-			.withFunction(new DynamicSOQLFunction('SUM', 'Amount', 'amount'))
-			.withFunction(new DynamicSOQLFunction('COUNT', 'Id', 'oppCount'))
-			.withFunction(new DynamicSOQLFunction('AVG', 'Amount', 'avgAmount'))
+			.withFunction(new libak_DynamicSOQLFunction('SUM', 'Amount', 'amount'))
+			.withFunction(new libak_DynamicSOQLFunction('COUNT', 'Id', 'oppCount'))
+			.withFunction(new libak_DynamicSOQLFunction('AVG', 'Amount', 'avgAmount'))
 			.withGroupBy(
-				new DynamicSOQLGroupBy(new List<String>{'StageName'})
+				new libak_DynamicSOQLGroupBy(new List<String>{'StageName'})
 				.withHaving(
-					new DynamicSOQLConditionBlock('AND')
-					.addCondition(new DynamicSOQLCondition(
-						new DynamicSOQLFunction('SUM','Amount'), '>', 190)
+					new libak_DynamicSOQLConditionBlock('AND')
+					.addCondition(new libak_DynamicSOQLCondition(
+						new libak_DynamicSOQLFunction('SUM','Amount'), '>', 190)
 					)
 				)
 			);
