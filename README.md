@@ -47,58 +47,44 @@ Integrate Salesforce Dynamic SOQL into your JavaScript applications:
 [Read the JavaScript Guide](libak_DynamicSOQL_JS_API.md)
 
 
-## 🔧 Installation
+### 🚀 Installation
 
-        The information is not prepared yet
-
-## 📜 Examples
-
-### Apex Example
-```java
-libak_DynamicSOQL soql = new libak_DynamicSOQL('Account')
-    .withField('Id')
-    .withField('Name')
-    .withConditions(
-        new libak_DynamicSOQLConditionBlock('AND')
-        .addCondition(new libak_DynamicSOQLCondition('Name', '=', 'Some Account Name'))
-    )
-    .withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}));
-
-System.debug(soql.stringify());
-/* The output (line breaks was added manually):
-    SELECT Id,Name
-    FROM Account
-    WHERE (Name = 'Some Account Name')
-    ORDER BY Name,Id ASC NULLS LAST
-*/
-```
-
-### JavaScript Example
-```javascript
-const soql = new libak_DynamicSOQL('Account')
-    .withField('Id')
-    .withField('Name')
-    .withConditions(
-        new libak_DynamicSOQLConditionBlock('AND')
-        .addCondition(new libak_DynamicSOQLCondition('Name', '=', 'Some Account Name'))
-    )
-    .withOrderBy(new libak_DynamicSOQLOrderBy(['Name', 'Id']))
-    .withSubQuery(
-        'Contacts',
-        new libak_DynamicSOQL('Contact')
-        .withField('FirstName')
-        .withField('Email')
-        .withConditions(
-            new libak_DynamicSOQLConditionBlock('AND')
-            .addCondition(new libak_DynamicSOQLCondition('Email', '!=', null))
-        )
-    );
-```
+- **1st option**
+  1. Clone or download this repository.
+  2. Deploy the source code to your Salesforce org using your preferred deployment tool (e.g., Salesforce CLI, Workbench, or IDE).
+- **2nd option**
+  1. Use the "Deploy to Salesforce" button to deploy the framework to your target organization.
 
 
-## 💡 Contributing
+## 🤝 Contribution
 
-        The information is not prepared yet
+We welcome contributions! Here’s how you can get started:
+
+1. **🍴 Fork the Repository**
+
+2. **🌱 Create a New Branch**
+
+Work on your changes in a separate branch.
+
+Follow the branch naming conventions:
+
+- ✨ For features: `feature/<branch-name>`
+- 🐛 For bug fixes: `bugfix/<branch-name>`
+- 📚 For documentation: `doc/<branch-name>`
+
+3. **🔧 Make Changes and Test**
+
+Implement your changes and ensure everything works.
+
+4. **🚀 Push Your Changes**
+
+Push your branch to your forked repository:
+
+`git push origin your-branch-name`
+
+5. **📬 Submit a Pull Request**
+
+Open a pull request to the develop branch with a clear description of your changes.
 
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
