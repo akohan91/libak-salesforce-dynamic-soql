@@ -1,0 +1,19 @@
+name: Deployment Verification
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  deploy_verification:
+    uses: akohan91/libak-salesforce-ci/.github/workflows/deployment_validation.yaml@main
+    secrets: inherit
