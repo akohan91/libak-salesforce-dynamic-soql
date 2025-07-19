@@ -1,10 +1,10 @@
 @IsTest
-public with sharing class TestDynamicSOQLGroupBy {
+public with sharing class libak_TestDynamicSOQLGroupBy {
 	@IsTest
 	static void testConstructor(){
 		Test.startTest();
 		List<String> fieldGroupByList = new List<String>{'Name'};
-		DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(fieldGroupByList);
+		libak_DynamicSOQLGroupBy groupBy = new libak_DynamicSOQLGroupBy(fieldGroupByList);
 		System.assertEquals(
 			fieldGroupByList, groupBy.fieldGroupByList,
 			'The fieldGroupByList property of DynamicSOQLGoupBy instance is wrong.'
@@ -16,7 +16,7 @@ public with sharing class TestDynamicSOQLGroupBy {
 	static void testFieldsApiNames(){
 		Test.startTest();
 		List<String> fieldGroupByList = new List<String>{'Name'};
-		DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(fieldGroupByList);
+		libak_DynamicSOQLGroupBy groupBy = new libak_DynamicSOQLGroupBy(fieldGroupByList);
 		System.assertEquals(
 			fieldGroupByList, groupBy.fieldsApiNames(),
 			'The "fieldsApiNames()" method returns wrong list of fields.'
@@ -27,13 +27,13 @@ public with sharing class TestDynamicSOQLGroupBy {
 	@IsTest
 	static void testToStringWithHaving(){
 		Test.startTest();
-		DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(new List<String>{'Name'})
+		libak_DynamicSOQLGroupBy groupBy = new libak_DynamicSOQLGroupBy(new List<String>{'Name'})
 		.withHaving(
-			new DynamicSOQLConditionBlock('AND')
-			.addCondition(new DynamicSOQLCondition(new DynamicSOQLFunction('COUNT', 'Name'), '>', 10))
+			new libak_DynamicSOQLConditionBlock('AND')
+			.addCondition(new libak_DynamicSOQLCondition(new libak_DynamicSOQLFunction('COUNT', 'Name'), '>', 10))
 		);
 		System.assertEquals(
-			'GROUP BY Name HAVING (COUNT(Name) > 10)', groupBy.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
+			'GROUP BY Name HAVING (COUNT(Name) > 10)', groupBy.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
 			'The "stringify" method returns wrong GROUP BY statement.'
 		);
 		Test.stopTest();
@@ -42,9 +42,9 @@ public with sharing class TestDynamicSOQLGroupBy {
 	@IsTest
 	static void testToString(){
 		Test.startTest();
-		DynamicSOQLGroupBy groupBy = new DynamicSOQLGroupBy(new List<String>{'Name'});
+		libak_DynamicSOQLGroupBy groupBy = new libak_DynamicSOQLGroupBy(new List<String>{'Name'});
 		System.assertEquals(
-			'GROUP BY Name', groupBy.stringify('Account', new TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
+			'GROUP BY Name', groupBy.stringify('Account', new libak_TestDynamicSOQLEnvironment.TestFieldPathConstructor()),
 			'The "stringify()" method returns wrong GROUP BY statement.'
 		);
 		Test.stopTest();
