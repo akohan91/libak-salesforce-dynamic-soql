@@ -40,11 +40,11 @@ Welcome to the **Salesforce Dynamic SOQL** project! This open-source library emp
 
 ### Apex Reference API Guide
 Learn how to use Salesforce Dynamic SOQL in your Apex code:
-[Read the Apex Guide](DynamicSOQL.md)
+[Read the Apex Guide](libak_DynamicSOQL.md)
 
 ### JavaScript Reference API Guide
 Integrate Salesforce Dynamic SOQL into your JavaScript applications:
-[Read the JavaScript Guide](DynamicSOQL_JS_API.md)
+[Read the JavaScript Guide](libak_DynamicSOQL_JS_API.md)
 
 
 ## 🔧 Installation
@@ -55,14 +55,14 @@ Integrate Salesforce Dynamic SOQL into your JavaScript applications:
 
 ### Apex Example
 ```java
-DynamicSOQL soql = new DynamicSOQL('Account')
+libak_DynamicSOQL soql = new libak_DynamicSOQL('Account')
     .withField('Id')
     .withField('Name')
     .withConditions(
-        new DynamicSOQLConditionBlock('AND')
-        .addCondition(new DynamicSOQLCondition('Name', '=', 'Some Account Name'))
+        new libak_DynamicSOQLConditionBlock('AND')
+        .addCondition(new libak_DynamicSOQLCondition('Name', '=', 'Some Account Name'))
     )
-    .withOrderBy(new DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}));
+    .withOrderBy(new libak_DynamicSOQLOrderBy(new List<String>{'Name', 'Id'}));
 
 System.debug(soql.stringify());
 /* The output (line breaks was added manually):
@@ -75,22 +75,22 @@ System.debug(soql.stringify());
 
 ### JavaScript Example
 ```javascript
-const soql = new DynamicSOQL('Account')
+const soql = new libak_DynamicSOQL('Account')
     .withField('Id')
     .withField('Name')
     .withConditions(
-        new DynamicSOQLConditionBlock('AND')
-        .addCondition(new DynamicSOQLCondition('Name', '=', 'Some Account Name'))
+        new libak_DynamicSOQLConditionBlock('AND')
+        .addCondition(new libak_DynamicSOQLCondition('Name', '=', 'Some Account Name'))
     )
-    .withOrderBy(new DynamicSOQLOrderBy(['Name', 'Id']))
+    .withOrderBy(new libak_DynamicSOQLOrderBy(['Name', 'Id']))
     .withSubQuery(
         'Contacts',
-        new DynamicSOQL('Contact')
+        new libak_DynamicSOQL('Contact')
         .withField('FirstName')
         .withField('Email')
         .withConditions(
-            new DynamicSOQLConditionBlock('AND')
-            .addCondition(new DynamicSOQLCondition('Email', '!=', null))
+            new libak_DynamicSOQLConditionBlock('AND')
+            .addCondition(new libak_DynamicSOQLCondition('Email', '!=', null))
         )
     );
 ```

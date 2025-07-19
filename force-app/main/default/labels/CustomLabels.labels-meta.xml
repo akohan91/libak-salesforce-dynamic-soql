@@ -30,6 +30,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NoFieldApiNameInSOQLCondition</shortDescription>
-        <value>The DynamicSOQLCondition does not contain fieldApiName or DynamicSOQLFunction</value>
+        <value>The libak_DynamicSOQLCondition does not contain fieldApiName or DynamicSOQLFunction</value>
     </labels>
 </CustomLabels>

@@ -1,9 +1,9 @@
 @IsTest
-public with sharing class TestDynamicSOQLEnvironment {
+public with sharing class libak_TestDynamicSOQLEnvironment {
 	
-	public static DynamicSOQL.Factory factory = new DynamicSOQL.Factory(new TestFieldPathConstructor());
+	public static libak_DynamicSOQL.Factory factory = new libak_DynamicSOQL.Factory(new TestFieldPathConstructor());
 
-	private class TestFieldPath implements DynamicSOQL.ISobjectFieldPath {
+	private class TestFieldPath implements libak_DynamicSOQL.ISobjectFieldPath {
 		private Map<String,Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
 		private String sObjectName;
 		private String fieldPath;
@@ -18,8 +18,8 @@ public with sharing class TestDynamicSOQLEnvironment {
 		}
 	}
 
-	public class TestFieldPathConstructor implements DynamicSOQL.ISobjectFieldPathConstructable {
-		public DynamicSOQL.ISobjectFieldPath construct(String sObjectType, String fieldPath) {
+	public class TestFieldPathConstructor implements libak_DynamicSOQL.ISobjectFieldPathConstructable {
+		public libak_DynamicSOQL.ISobjectFieldPath construct(String sObjectType, String fieldPath) {
 			return new TestFieldPath(sObjectType, fieldPath);
 		}
 	}

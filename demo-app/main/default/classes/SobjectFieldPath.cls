@@ -1,4 +1,4 @@
-public with sharing class SobjectFieldPath implements DynamicSOQL.ISobjectFieldPath {
+public with sharing class SobjectFieldPath implements libak_DynamicSOQL.ISobjectFieldPath {
 	public static Map<String,Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
 	@TestVisible
 	private SObjectType sObjectType;

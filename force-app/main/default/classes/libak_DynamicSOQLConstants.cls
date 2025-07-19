@@ -1,4 +1,4 @@
-public with sharing class DynamicSOQLConstants {
+public with sharing class libak_DynamicSOQLConstants {
 	public static final Map<String,Schema.SObjectType> GLOBAL_DESCRIBE = Schema.getGlobalDescribe();
 	public static final String TMPL_QUERY =
 		'SELECT {selectItems} FROM {SObject} {WHERE} {GROUP BY} {ORDER BY} {LIMIT} {OFFSET}';
