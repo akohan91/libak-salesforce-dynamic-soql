@@ -14,13 +14,6 @@
     height="28px"
   >
 </a>
-<a href="https://www.linkedin.com/pulse/dynamicsoql-flexible-object-oriented-solution-andrew-kohanovskij">
-  <img
-    alt="akohan91 | LinkedIn"
-    src="https://cdn.simpleicons.org/linkedin"
-    height="28px"
-  >
-</a>
 
 ---
 
@@ -37,6 +30,10 @@ Welcome to the **Salesforce Dynamic SOQL** project! This open-source library emp
 
 
 ## 📖 Documentation
+
+### Developer Guide
+Check usage examples
+[Read the Developer Guide](libak_dinamicSOQL_developer_guide.md)
 
 ### Apex Reference API Guide
 Learn how to use Salesforce Dynamic SOQL in your Apex code:
