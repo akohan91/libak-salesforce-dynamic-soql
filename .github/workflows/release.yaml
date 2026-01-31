@@ -1,0 +1,11 @@
+name: Release
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    uses: akohan91/libak-salesforce-ci/.github/workflows/create-draft-release.yaml@main
